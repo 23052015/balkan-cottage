@@ -1,1 +1,1 @@
-web: gunicorn balkancottageapp.wsgi
+web: gunicorn balkancottage.wsgi
