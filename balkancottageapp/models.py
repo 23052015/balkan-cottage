@@ -12,9 +12,11 @@ class Menu(models.Model):
     description = models.CharField(max_length=200)
     price = models.FloatField()
     image = CloudinaryField('image', default='')
+    content = models.TextField(blank=True)
     likes = models.ManyToManyField(
         User, related_name='dish_like', blank=True
         )
+    status = models.IntegerField(choices=STATUS, default=0)
 
     def __str__(self):
         return self.dish_name
