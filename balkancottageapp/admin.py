@@ -5,7 +5,8 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Menu)
 class PostAdmin(SummernoteModelAdmin):
-    # Add later the filters and sorting methods after decision which layout the menu will have
+    # Add later the filters and sorting methods after decision 
+    # which layout the menu will have
     summernote_fields = ('content')
 
 
