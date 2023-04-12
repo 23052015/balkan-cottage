@@ -55,6 +55,7 @@ class Comment(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     likes = models.ManyToManyField(User, related_name='liked_comments')
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return f'Commented by {self.user.username}'
