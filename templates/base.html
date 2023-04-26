@@ -1,9 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 
 <head>
 
-    <title>Document</title>
+    <title>Balkan Cottage</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@600&family=Crete+Round&display=swap"
@@ -21,6 +23,90 @@
 
 <body>
 
+    <!--Navigation-->
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Navbar w/ text</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reservations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign In</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <span class="navbar-text">
+                    Balkan Cottage
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-shrink-0 main-bg">
+        {% block content %}
+        <!--Content-->
+        {% endblock content %}
+    </main>
+
+    <!--Footer-->
+
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Opening hours</h4>
+                    <ul class="list-unstyled text-small">
+                        <li>Monday: 12h-00h</li>
+                        <li>Tuesday: 12h-00h</li>
+                        <li>Wednesday: 12h-00h</li>
+                        <li>Thursday: 12h-00h</li>
+                        <li>Friday: 12h-00h</li>
+                        <li>Saturday: 12h-00h</li>
+                        <li>Sunday: 12h-00h</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contact Us</h4>
+                    <p>
+                        Oak Road 357 <br>
+                        Lopusnik, Serbia <br>
+                        Phone: +381 55 66 85 455 <br>
+                        Email: balkancottage@balkancottage.com <br>
+                    </p>
+                </div> 
+                <!--This part of code is copied from django blog project made by code institute-->
+                <div class="col-md-4">
+                    <p class="m-0 text-center text-white">Made by  Stefan Stanisavljevic</p>
+                    <p class="m-0 text-center text-white">Follow us:
+                        <i class="fab fa-facebook-square ms-3"></i>
+                        <i class="fab fa-instagram-square ms-3"></i>
+                </div>
+            </div>
+        </div>
+
+    </footer>
 </body>
 
 </html>

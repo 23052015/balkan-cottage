@@ -55,3 +55,6 @@ The project was deployed using Heroku.
 
 
 ### Credits
+
+#### Images
+Backgound image <a href="https://www.freepik.com/free-photo/grill-background-barbecue-fire-grill-close-up-isolated-black-background_13012809.htm#query=bbq&position=5&from_view=search&track=sph">Image by jcomp</a> on Freepik
