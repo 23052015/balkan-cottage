@@ -6,6 +6,12 @@ from cloudinary.models import CloudinaryField
 STATUS = ((0, "Draft"), (1, "Published"))
 
 
+class Home(models.Model):
+
+    welcome_page = models.CharField(max_length=120)
+
+
+# Model for the Menu which is created by the Admin
 class Menu(models.Model):
     dish_name = models.CharField(max_length=130)
     extra = models.CharField(max_length=130)

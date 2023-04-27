@@ -6,9 +6,14 @@ from .models import Reservation, Table
 from datetime import datetime, timedelta
 
 
+class HomePage(generic.ListView):
+    queryset = Home
+    template_name = 'index.html'
+
+
 class MenuList(generic.ListView):
     model = Menu
-    # decide by which order to sort later 
-    queryset = Menu.objects.filter(status=1).order_by('')
-    template_name = 'index.html'
+    # decide by which order to sort later
+    queryset = Menu.objects.filter(status=1).order_by('-price')
+    template_name = 'menu.html'
     paginate_by = 6

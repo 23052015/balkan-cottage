@@ -58,3 +58,5 @@ The project was deployed using Heroku.
 
 #### Images
 Backgound image <a href="https://www.freepik.com/free-photo/grill-background-barbecue-fire-grill-close-up-isolated-black-background_13012809.htm#query=bbq&position=5&from_view=search&track=sph">Image by jcomp</a> on Freepik
+
+Pljeskavica dish Image by <a href="https://www.freepik.com/free-photo/high-angle-burger-meat-grill_12656694.htm#query=grilled%20burger&position=0&from_view=search&track=robertav1_2_sidr">Freepik</a>
