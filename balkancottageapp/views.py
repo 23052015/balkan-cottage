@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import generic
-from .models import Menu
+from .models import Menu, Home
 from django.contrib.auth.decorators import login_required
 from .models import Reservation, Table
 from datetime import datetime, timedelta
 
 
 class HomePage(generic.ListView):
-    queryset = Home
+    model = Home
     template_name = 'index.html'
 
 
