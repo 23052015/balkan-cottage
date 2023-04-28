@@ -7,10 +7,11 @@ body {
 
 /*index.html*/
 
-#home {
-    width: 100%!important;
+.bg-cover {
+    background-size: cover!important;
+    width: 100%;
+    max-height: 45vw;
 }
-
 
 
 /* .btn {
@@ -20,7 +21,7 @@ body {
 /* navigation */
 
 .navbar {
-    background-image: linear-gradient(#fcaf00, #871d00 60%, #fa6400);
+    background-image: linear-gradient(#fcaf00, #ff9b00 60%, #fa6400);
     background-repeat: no-repeat;
     border-bottom: 1px solid #000000;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
@@ -79,5 +80,5 @@ body {
 /*footer*/
 
 .bg-light {
-    background-color: #fa6400!important;
+    background-color: #ff9b00!important;
 }

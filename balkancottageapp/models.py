@@ -18,7 +18,7 @@ class Menu(models.Model):
     description = models.CharField(max_length=200)
     price = models.FloatField()
     image = CloudinaryField('image', default='')
-    content = models.TextField(blank=True)
+    content = models.CharField(max_length=999)
     likes = models.ManyToManyField(
         User, related_name='dish_like', blank=True
         )
@@ -45,9 +45,9 @@ class Reservation(models.Model):
 
 class Table(models.Model):
     TABLE_CHOICES = (
-        ('4', '4 perosns'),
-        ('8', '8 perosns'),
-        ('10', '10 perosns'),
+        ('4', '4 persons'),
+        ('8', '8 persons'),
+        ('10', '10 persons'),
     )
     table_number = models.IntegerField(unique=True)
     capacity = models.CharField(max_length=2, choices=TABLE_CHOICES)

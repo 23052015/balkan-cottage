@@ -2,28 +2,23 @@
 {% load static %}
 {% block content %}
 
-<div class="masthead">
-    <div class="container">
-        <div class="row g-0">
-            <div class="col-md-6 masthead-text">
-                <!-- Post title goes in these h1 tags -->
-                {% for menu in menu_list %}
-                <h1 class="post-title">
-                </h1>
-                <!-- Post author goes before the | the post's created date goes after -->
-                <p class="post-subtitle"> | </p>
-            </div>
-            <div class="d-none d-md-block col-md-6 masthead-image">
-                <!-- The featured image URL goes in the src attribute -->
-                
-                <img src="{{ menu.image.url }}" width="100%">
-                
-                
-                {% endfor %}
-            </div>
-        </div>
+
+<div class="card" style="width: 25rem;">
+    {% for menu in menu_list %}
+    <img src="{{ menu.image.url }}" class="card-img-top" alt="piece of meat grilled">
+    <div class="card-body">
+      <h5 class="card-title">{{ menu.dish_name }}</h5>
+      <p class="card-text">{{ menu.extra }}</p>
+      <p>{{ menu.price }}</p>
+      <p>{{ menu.description }}</p>
+      <p>{{ menu.content }}</p>
     </div>
-</div>
+    {% endfor %}
+  </div>
+
+            
+                
+
 
 
 {% endblock content %}
