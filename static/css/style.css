@@ -1,11 +1,83 @@
-.image-container {
-    position: relative;
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@600&family=Crete+Round&display=swap");
+
+body {
+    color: #000000;
+    font-family: Cormorant, sans-serif;
 }
 
-.image-flash {
-    position: absolute;
-    bottom: 5%;
-    min-width: 30%;
-    left: -2px;
-    background-color: #23BBBB;
+/*index.html*/
+
+#home {
+    width: 100%!important;
+}
+
+
+
+/* .btn {
+    border-radius: 25px;
+} */
+
+/* navigation */
+
+.navbar {
+    background-image: linear-gradient(#fcaf00, #871d00 60%, #fa6400);
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #000000;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+    padding-bottom: 3rem;
+
+
+}
+
+
+
+.navbar-collapse {
+    text-align: center;
+    flex-grow: 0;
+}
+
+.navbar-brand {
+    font-size: 40px;
+}
+
+.container-fluid {
+    width: 70%;
+    font-size: 22px;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav>li>a {
+    color: #FFF;
+}
+
+.nav-link {
+    color: #000000;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #FFF;
+    background-color: #178ACC;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: #178ACC;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #178ACC;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #FFF;
+}
+
+/*footer*/
+
+.bg-light {
+    background-color: #fa6400!important;
 }
