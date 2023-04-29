@@ -40,6 +40,7 @@ note: live website
 #### Fixed Bugs
 * When deploying the error " at=error code=H10 desc="App crashed" method=GET path="/" " occured which caused the homepage to crash. The problem was in the config vars
   CLOUDINARY_URL which by mistake contained invalid values. This bug was resolved by correcting the CLOUDINARY_URL .
+* Beside the content, code was also displayed on menu.html page. The bug was fixed by adding {{ variable_name | safe }}
 
 
 ### Heroku Deployment

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+
 {% block content %}
 
 
@@ -11,7 +11,7 @@
       <p class="card-text">{{ menu.extra }}</p>
       <p>{{ menu.price }}</p>
       <p>{{ menu.description }}</p>
-      <p>{{ menu.content }}</p>
+      <p>{{ menu.content | safe }}</p>
     </div>
     {% endfor %}
   </div>
@@ -21,4 +21,4 @@
 
 
 
-{% endblock content %}
+{% endblock %}

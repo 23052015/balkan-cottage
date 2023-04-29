@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views import generic
+from django.views import generic, View
 from .models import Menu, Home
 from django.contrib.auth.decorators import login_required
 from .models import Reservation, Table
