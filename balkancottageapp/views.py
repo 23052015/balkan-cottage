@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views import generic, View
-from .models import Menu, Home
+from django.views import generic
+from .models import Menu, Home, Reservation, Table
+from .forms import ReservationTableForm
 from django.contrib.auth.decorators import login_required
-from .models import Reservation, Table
+from django.forms import Form
 from datetime import datetime, timedelta
 
 
@@ -17,3 +18,10 @@ class MenuList(generic.ListView):
     queryset = Menu.objects.filter(status=1).order_by('-price')
     template_name = 'menu.html'
     paginate_by = 6
+
+
+@login_required()
+def reserve_table(request):
+    if request.method == 'Post':
+        form = ReservationTableForm(request.Post)
+        
