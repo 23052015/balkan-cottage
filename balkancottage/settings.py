@@ -34,7 +34,7 @@ DEBUG = False
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
-ALLOWED_HOSTS = ['balkan-cottage.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['balkan-cottage.herokuapp.com', 'localhost', '*']
 
 
 # Application definition
