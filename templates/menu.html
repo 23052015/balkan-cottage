@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 
@@ -13,8 +13,9 @@
       <p>{{ menu.description }}</p>
       <p>{{ menu.content | safe }}</p>
     </div>
-    {% endfor %}
   </div>
+    {% endfor %}
+  
 
             
                 
@@ -22,3 +23,5 @@
 
 
 {% endblock %}
+
+

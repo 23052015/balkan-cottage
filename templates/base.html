@@ -24,6 +24,7 @@
 
 <body>
 
+
     <!--Navigation-->
 
 
@@ -62,13 +63,13 @@
             </div>
         </div>
     </nav>
+    {% block content %}
 
-    <main class="flex-shrink-0 main-bg">
-        {% block content %}
+        
         <!--Content-->
-        {% endblock content %}
-    </main>
-
+        
+    
+    {% endblock content %}
     <!--Footer-->
 
     <footer class="footer mt-auto py-3 bg-light">
