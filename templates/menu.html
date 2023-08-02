@@ -6,22 +6,25 @@
 <div class="card" style="width: 25rem;">
     {% for menu in menu_list %}
     <img src="{{ menu.image.url }}" class="card-img-top" alt="piece of meat grilled">
-    <div class="card-body">
+    <div class="card-body"> 
       <h5 class="card-title">{{ menu.dish_name }}</h5>
       <p class="card-text">{{ menu.extra }}</p>
       <p>{{ menu.price }}</p>
-      <p>{{ menu.description }}</p>
-      <p>{{ menu.content | safe }}</p>
+      <p>{{ menu.description }}
+
+       <p>{{ menu.content | safe }}</p>
     </div>
-  </div>
     {% endfor %}
+  </div>  
+
   
+{% endblock %} 
 
             
                 
 
 
 
-{% endblock %}
+
 
 

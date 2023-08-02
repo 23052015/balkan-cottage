@@ -18,7 +18,7 @@ class Menu(models.Model):
     description = models.CharField(max_length=200)
     price = models.FloatField()
     image = CloudinaryField('image', default='')
-    content = models.CharField(max_length=999)
+    content = models.CharField(max_length=200)
     likes = models.ManyToManyField(
         User, related_name='dish_like', blank=True
         )
