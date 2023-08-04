@@ -20,8 +20,12 @@ class MenuList(generic.ListView):
     paginate_by = 6
 
 
+class Reservation(generic.ListView):
+    model = Reservation
+    template_name = 'reservation.html'
+
+
 @login_required()
 def reserve_table(request):
     if request.method == 'Post':
         form = ReservationTableForm(request.Post)
-        
