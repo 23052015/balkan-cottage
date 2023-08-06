@@ -23,6 +23,7 @@ class MenuList(generic.ListView):
 class Reservation(generic.ListView):
     model = Reservation
     template_name = 'reservation.html'
+    
 
 
 @login_required()
