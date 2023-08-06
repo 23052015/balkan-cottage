@@ -30,3 +30,13 @@ class Reservation(generic.ListView):
 def reserve_table(request):
     if request.method == 'Post':
         form = ReservationTableForm(request.Post)
+        if form.is_valid:
+            reservation_date = form.cleaned_data['reservation_date']
+            reservation_time = form.cleaned_data['reservation_time']
+            Table = form.cleaned_data['table']
+
+
+def validate_reservation(user, reservation_date, reservation_time)
+
+
+def confirm_reservation(user, reservation_date, reservation_time)
