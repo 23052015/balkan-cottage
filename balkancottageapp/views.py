@@ -55,8 +55,8 @@ def validate_reservation(user, reservation_date, reservation_time):
     existing_reservation = Reservation.objects.filter(
         reservation_date=reservation_date,
         table=table_number,
-        reservation_time >= reservation_end_time,
-        reservation_time <= reservation_start_time
+        reservation_time__lte=reservation_end_time,
+        reservation_time__gte=reservation_start_time
     )
     if existing_reservation.exists():
         return False, "Ups, the table is already booked in the selected period"

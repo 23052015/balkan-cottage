@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
+<section>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <h2>Reserve a table</h2>
+        <form method="POST"></form>
+    </div>
+</section>
 
 
 
