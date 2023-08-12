@@ -6,10 +6,19 @@
 <section>
     <div class="container">
         {% if user.is_authenticated %}
-        <h2>Make a reservation</h2>
-        <p>{{ user.username }}</p>
+        <h2>My Reservations: {{ user.username }}</h2>
+        <ul>
+            {% for reservation in user_reservations %}
+
+            <li>
+                Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }}
+            </li>
+
+            {% endfor }
+        </ul>
+
         <form method="POST">
-            {{ reservation_table_form | crispy }}
+            {{ form | crispy }}
             {% csrf_token %}
             <button type="submit">Submit</button>
         </form>

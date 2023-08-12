@@ -41,7 +41,9 @@ note: live website
 * When deploying the error " at=error code=H10 desc="App crashed" method=GET path="/" " occured which caused the homepage to crash. The problem was in the config vars
   CLOUDINARY_URL which by mistake contained invalid values. This bug was resolved by correcting the CLOUDINARY_URL .
 * Beside the content, code was also displayed on menu.html page. The bug was fixed by adding {{ variable_name | safe }}
-
+* @method_decorator(login_required) in django https://stackoverflow.com/questions/42306257/what-is-the-difference-between-login-required-and-method-decoratorlogin-requi
+* Get and post functions
+* update crispy form version
 
 ### Heroku Deployment
 

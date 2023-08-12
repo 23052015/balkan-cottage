@@ -9,10 +9,13 @@
         <h2>Make a reservation</h2>
         <p>{{ user.username }}</p>
         <form method="POST">
-            {{ reservation_table_form | crispy }}
+            {{ form | crispy }}
             {% csrf_token %}
             <button type="submit">Submit</button>
         </form>
+        {% else %}
+        <p>Please login at </p>
+        {% endif %}
     </div>
 </section>
 

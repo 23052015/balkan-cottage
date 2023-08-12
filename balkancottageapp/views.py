@@ -5,6 +5,7 @@ from .forms import ReservationTableForm
 from django.contrib.auth.decorators import login_required
 from django.forms import Form
 from datetime import datetime, timedelta
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class HomePage(generic.ListView):
@@ -20,12 +21,15 @@ class MenuList(generic.ListView):
     paginate_by = 6
 
 
-@login_required
-class CreateReservation(View):
+class CreateReservation(LoginRequiredMixin, View):
     model = Reservation
     template_name = 'reservation.html'
 
-    def reserve_table(self, request):
+    def get(self, request):
+        form = ReservationTableForm
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
         if request.method == 'POST':
             form = ReservationTableForm(request.POST)
             if form.is_valid():
@@ -36,7 +40,8 @@ class CreateReservation(View):
                 if success_msg:
                     reservation = Reservation(user=request.user, reservation_date=reservation_date, reservation_time=reservation_time)
                     reservation.save()
-                    return render(request, 'my_reservations.html', {'message': success_msg})
+                    user_reservations = Reservation.objects.filter(user=request.user)
+                    return render(request, 'my_reservations.html', {'user_reservations': user_reservations})
                 else:
                     return render(request, 'reservation.html', {'form': form, 'error_msg': error_msg})
         else:
