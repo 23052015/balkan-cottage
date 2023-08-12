@@ -38,16 +38,3 @@ class Reservation(models.Model):
     table = models.IntegerField()
     reservation_date = models.DateField()
     reservation_time = models.TimeField()
-
-# Table Model
-
-
-class Table(models.Model):
-    TABLE_CHOICES = (
-        ('4', '4 persons'),
-        ('8', '8 persons'),
-        ('10', '10 persons'),
-    )
-    table_number = models.IntegerField(unique=True)
-    capacity = models.CharField(max_length=2, choices=TABLE_CHOICES)
-    is_available = models.BooleanField(default=True)

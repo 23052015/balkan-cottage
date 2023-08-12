@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.views import generic
-from .models import Menu, Home, Reservation, Table
+from django.views import generic, View
+from .models import Menu, Home, Reservation
 from .forms import ReservationTableForm
 from django.contrib.auth.decorators import login_required
 from django.forms import Form
@@ -20,64 +20,44 @@ class MenuList(generic.ListView):
     paginate_by = 6
 
 
-class Reservation(generic.ListView):
+@login_required
+class CreateReservation(View):
     model = Reservation
     template_name = 'reservation.html'
-    
 
-@login_required()
-def reserve_table(request):
-    if request.method == 'Post':
-        form = ReservationTableForm(request.Post)
-        if form.is_valid:
-            reservation_date = form.cleaned_data['reservation_date']
-            reservation_time = form.cleaned_data['reservation_time']
-            table = form.cleaned_data['table']
-            success_msg = validate_reservation(request.user, reservation_date, reservation_time, table)
-            error_msg = validate_reservation(request.user, reservation_date, reservation_time, table)
-            if success_msg:
-                return "Congratulations, your booking is confirmed"
-            else:
-                return "Unfortunately the booking is not confirmed"
-    else:
-        form = ReservationTableForm()
-    return render(request, 'reservation.html')
-        
+    def reserve_table(self, request):
+        if request.method == 'POST':
+            form = ReservationTableForm(request.POST)
+            if form.is_valid():
+                reservation_date = form.cleaned_data['reservation_date']
+                reservation_time = form.cleaned_data['reservation_time']
+                success_msg = self.validate_reservation(request.user, reservation_date, reservation_time)
+                error_msg = self.validate_reservation(request.user, reservation_date, reservation_time)
+                if success_msg:
+                    reservation = Reservation(user=request.user, reservation_date=reservation_date, reservation_time=reservation_time)
+                    reservation.save()
+                    return render(request, 'my_reservations.html', {'message': success_msg})
+                else:
+                    return render(request, 'reservation.html', {'form': form, 'error_msg': error_msg})
+        else:
+            form = ReservationTableForm()
+        return render(request, 'reservation.html', {'form': form})
+            
+    def validate_reservation(self, user, reservation_date, reservation_time):
+        """
+        This functions validates the reservation by checking the existence
+        of another reservation indicating potential overlapping and avoiding
+        conflicts if there is a reservation in a certain time period.
+        """
+        reservation_start_time = datetime.combine(reservation_date, reservation_time)
+        reservation_end_time = reservation_start_time + timedelta(hours=3)
+        existing_reservation = Reservation.objects.filter(
+            reservation_date=reservation_date,
+            reservation_time__lte=reservation_end_time,
+            reservation_time__gte=reservation_start_time
+        )
+        if existing_reservation.exists():
+            return False, "Ups, there is already a reservation in the selected period"
+        else:
+            return True, None
 
-def validate_reservation(user, reservation_date, reservation_time):
-    """
-    This functions validates the reservation by checking the existence
-    of another reservation indicating potential overlapping and avoiding
-    conflicts if there is a reservation in a certain time period.
-    """
-    reservation_start_time = datetime.combine(reservation_date, reservation_time)
-    reservation_end_time = reservation_start_time + timedelta(hours=2)
-    existing_reservation = Reservation.objects.filter(
-        reservation_date=reservation_date,
-        table=table_number,
-        reservation_time__lte=reservation_end_time,
-        reservation_time__gte=reservation_start_time
-    )
-    if existing_reservation.exists():
-        return False, "Ups, the table is already booked in the selected period"
-    try:
-        table_nr = Table.objects.get(table_number=table_number)
-    except Table.DoesNotExist:
-        return False, "Invalid table number selected."
-    if not table_nr.is_available:
-        return False, "Ups, the table is not available for reservation at the moment"
-    if table_nr.capacity == '4' and existing_reservation.count() >=4:
-        return False, "Sorry, the table is fully booked for the selected time"
-    elif table_nr.capacity == '8' and existing_reservation.count() >=8:
-        return False, "Sorry, the table is fully booked for the selected time"
-    elif table_nr.capacity == '10' and existing_reservation.count() >=10:
-        return False, "Sorry, the table is fully booked for the selected time"
-    return True, None
-
-
-def confirm_reservation(user, reservation_date, reservation_time, table_number):
-    reservation = Reservation(user=user, table=table_number, reservation_date=reservation_date, reservation_time=reservation_time)
-    reservation.save()
-    table_nr = Table.objects.get(table_number=table_number)
-    table_nr.is_available = False
-    table_nr.save()
