@@ -36,6 +36,5 @@ class Menu(models.Model):
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    table = models.IntegerField()
     reservation_date = models.DateField()
     reservation_time = models.TimeField()

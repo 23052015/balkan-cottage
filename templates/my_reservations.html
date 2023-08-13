@@ -14,14 +14,10 @@
                 Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }}
             </li>
 
-            {% endfor }
+            {% endfor %}
         </ul>
 
-        <form method="POST">
-            {{ form | crispy }}
-            {% csrf_token %}
-            <button type="submit">Submit</button>
-        </form>
+        {% endif %}
     </div>
 </section>
 

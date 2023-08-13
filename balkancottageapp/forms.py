@@ -8,4 +8,7 @@ class ReservationTableForm(forms.ModelForm):
     class Meta:
         model = Reservation
         fields = ['reservation_date', 'reservation_time']
-
+        widgets = {
+            'reservation_date': forms.DateInput(attrs={'type': 'date'}),
+            'reservation_time': forms.TimeInput(attrs={'type': 'time'})
+        }
