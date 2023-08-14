@@ -11,7 +11,7 @@
             {% for reservation in user_reservations %}
 
             <li>
-                Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }}
+                Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }} | Time: {{ reservation.message }}
             </li>
 
             {% endfor %}

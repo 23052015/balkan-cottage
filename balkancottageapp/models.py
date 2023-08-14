@@ -38,3 +38,4 @@ class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     reservation_date = models.DateField()
     reservation_time = models.TimeField()
+    message = models.TextField(default='Special requests, alergies etc.', max_length=300)

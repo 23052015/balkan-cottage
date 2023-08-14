@@ -35,15 +35,16 @@ class CreateReservation(LoginRequiredMixin, View):
             if form.is_valid():
                 reservation_date = form.cleaned_data['reservation_date']
                 reservation_time = form.cleaned_data['reservation_time']
+                message = form.cleaned_data['message']
                 success_msg = self.validate_reservation(request.user, reservation_date, reservation_time)
-                error_msg = self.validate_reservation(request.user, reservation_date, reservation_time)
+                # error_msg = self.validate_reservation(request.user, reservation_date, reservation_time)
                 if success_msg:
-                    reservation = Reservation(user=request.user, reservation_date=reservation_date, reservation_time=reservation_time)
+                    reservation = Reservation(user=request.user, reservation_date=reservation_date, reservation_time=reservation_time, message=message)
                     reservation.save()
                     user_reservations = Reservation.objects.filter(user=request.user)
-                    return redirect('my_reservations.html', {'user_reservations': user_reservations})
+                    return render(request, 'my_reservations.html', {'user_reservations': user_reservations})
                 else:
-                    return render(request, 'reservation.html', {'form': form, 'error_msg': error_msg})
+                    return redirect('reservation.html', {'form': form})
         else:
             form = ReservationTableForm()
         return render(request, 'reservation.html', {'form': form})
