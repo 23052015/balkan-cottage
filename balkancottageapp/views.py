@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import generic, View
 from .models import Menu, Home, Reservation
 from .forms import ReservationTableForm
+from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from django.forms import Form
 from datetime import datetime, timedelta
@@ -67,3 +68,10 @@ class CreateReservation(LoginRequiredMixin, View):
         else:
             return True, None
 
+
+class MyReservations(ListView):
+    model = Reservation
+    template_name = 'my_reservations.html'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(user=self.request.user)

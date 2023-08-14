@@ -6,16 +6,19 @@
 <section>
     <div class="container">
         {% if user.is_authenticated %}
+        {% for reservation in object_list %}
+        {% if request.user == reservation.user %}
         <h2>My Reservations: {{ user.username }}</h2>
         <ul>
-            {% for reservation in user_reservations %}
+
 
             <li>
-                Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }} | Time: {{ reservation.message }}
+                Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }} | Message: {{ reservation.message }}
             </li>
 
-            {% endfor %}
+            {% endif %}
         </ul>
+        {% endfor %}
 
         {% endif %}
     </div>

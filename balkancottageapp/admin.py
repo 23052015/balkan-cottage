@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Menu
+from .models import Menu, Reservation
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -9,3 +9,7 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = ('status', 'price')
     summernote_fields = ('content')
 
+
+@admin.register(Reservation)
+class ReservationOverview(admin.ModelAdmin):
+    list_display = ('user', 'reservation_date', 'reservation_time', 'message')
