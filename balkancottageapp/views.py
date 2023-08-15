@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import generic, View
+from django.views.generic.edit import UpdateView, DeleteView
 from .models import Menu, Home, Reservation
 from .forms import ReservationTableForm
 from django.views.generic.list import ListView
@@ -7,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms import Form
 from datetime import datetime, timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 
 class HomePage(generic.ListView):
@@ -75,3 +77,11 @@ class MyReservations(ListView):
 
     def get_queryset(self):
         return Reservation.objects.filter(user=self.request.user)
+
+
+class UpdateReservation(LoginRequiredMixin, UpdateView):
+    model = Reservation
+    form_class = ReservationTableForm
+    template_name = 'my_reservations.html'
+    success_url = reverse_lazy('my_reservations')
+
