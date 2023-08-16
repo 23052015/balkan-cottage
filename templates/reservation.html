@@ -11,9 +11,23 @@
 
         <p>{{ user.username }}</p>
         <form method="POST">
-            {{ form.as_p }}
-
             {% csrf_token %}
+            {{ form | crispy }}
+
+          
+            <div>
+                
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li> {% if message.tags %} {{ message.tags }} {{ message }} {% endif %}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+          
+
+
             <button type="submit">Submit</button>
         </form>
         {% else %}

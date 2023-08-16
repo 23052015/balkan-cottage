@@ -44,6 +44,7 @@ note: live website
 * @method_decorator(login_required) in django https://stackoverflow.com/questions/42306257/what-is-the-difference-between-login-required-and-method-decoratorlogin-requi
 * Get and post functions
 * update crispy form version
+* https://stackoverflow.com/questions/2035288/getting-a-list-of-errors-in-a-django-form
 
 ### Heroku Deployment
 

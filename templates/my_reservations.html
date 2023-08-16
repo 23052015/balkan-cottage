@@ -33,7 +33,16 @@
             {% csrf_token %}
             {{ form | crispy }}
 
-
+            <div>
+                
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li> {% if message.tags %} {{ message.tags }} {{ message }} {% endif %}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
             <button type="submit">Update your existing reservation</button>
         </form>
         {% else %}
