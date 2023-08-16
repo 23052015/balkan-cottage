@@ -14,7 +14,7 @@
 
             <li>
                 Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }} | Message: {{ reservation.message }}
-                <a href="{% url 'update_reservation' reservation.pk %}">Update your reservation</a>
+                <a href="{% url 'update_reservation' pk=reservation.pk %}">Update your reservation</a>
             </li>
 
             {% endif %}
@@ -30,10 +30,11 @@
 
         <p>{{ user.username }}</p>
         <form method="POST">
-            {{ form.as_p }}
-
             {% csrf_token %}
-            <button type="submit">Submit</button>
+            {{ form | crispy }}
+
+
+            <button type="submit">Update your existing reservation</button>
         </form>
         {% else %}
         <p>Please login at </p>

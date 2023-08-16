@@ -83,5 +83,7 @@ class UpdateReservation(LoginRequiredMixin, UpdateView):
     model = Reservation
     form_class = ReservationTableForm
     template_name = 'my_reservations.html'
-    success_url = reverse_lazy('my_reservations')
+
+    def get_success_url(self):
+        return reverse_lazy('my_reservations')
 
