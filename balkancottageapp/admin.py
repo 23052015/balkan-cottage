@@ -5,8 +5,8 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Menu)
 class PostAdmin(SummernoteModelAdmin):
-    list_display = ('dish_name', 'price', 'status')
-    list_filter = ('status', 'price')
+    list_display = ('dish_name', 'status')
+    list_filter = ('status', 'dish_name')
     summernote_fields = ('content')
 
 

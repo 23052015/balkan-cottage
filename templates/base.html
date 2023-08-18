@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="d-flex flex-column h-100">
 
 
     <!--Navigation-->
@@ -30,7 +30,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Balkan Cottage</a>
+            <a class="navbar-brand text-white" href="{% url 'home' %}">Balkan Cottage</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,28 +38,28 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'reservation' %}">Reservations</a>
+                        <a class="nav-link text-white" href="{% url 'reservation' %}">Reservations</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'menu' %}">Menu</a>
+                        <a class="nav-link text-white" href="{% url 'menu' %}">Menu</a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="nav-link text-white" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'my_reservations' %}">My Reservations</a>
+                        <a class="nav-link text-white" href="{% url 'my_reservations' %}">My Reservations</a>
                     </li>
 
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Sign Up</a>
+                        <a class="nav-link text-white" href="{% url 'account_signup' %}">Sign Up</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
+                        <a class="nav-link text-white" href="{% url 'account_login' %}">Sign In</a>
                     </li>
                     {% endif %}
                 </ul>
@@ -76,29 +76,31 @@
     {% endblock content %}
     <!--Footer-->
 
-    <footer class="footer mt-auto py-3 bg-light fixed-bottom">
+    <footer class="footer py-3 bg-light mt-auto">
         <div class="container">
-            <div class="row">
-                <div class="col-md-4">
+            <div class="row flex-column flex-md-row justify-content-center">
+                <div class="col-md-4 mb-3 mb-md-0">
                     <h4>Opening hours</h4>
-                    <ul class="list-unstyled text-small">
-                        <li>Monday-Saturday</li>
-                        <li>12h-00h</li>
-                        <li>Sunday</li>
-                        <li>CLOSED</li>
+                    <ul class="list-unstyled text-small text-white">
+                        <li>Monday-Saturday</li><br>
+                        <li>12h-00h</li><br>
+                        <li>Sunday</li><br>
+                        <li>CLOSED</li><br>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3 mb-md-0">
                     <h4>Contact Us</h4>
-                    <p>
-                        Oak Road 357 <br>
-                        Lopusnik, Serbia <br>
-                        Phone: +381 55 66 85 455 <br>
-                        Email: balkancottage@balkancottage.com <br>
-                    </p>
+                    <ul class="list-unstyled text-small text-white">
+            
+                        <li>Oak Road 357</li><br>
+                        <li>Lopusnik, Serbia</li><br>
+                        <li>Phone: +381 55 66 85 455</li><br>
+                        <li>Email: balkancottage@balkancottage.com</li><br>
+                   
+                </ul>
                 </div>
                 <!--This part of code is copied from django blog project made by code institute-->
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3 mb-md-0">
                     <p class="m-0 text-center text-white">Made by Stefan Stanisavljevic</p>
                     <p class="m-0 text-center text-white">Follow us:
                         <i class="fab fa-facebook-square ms-3"></i>

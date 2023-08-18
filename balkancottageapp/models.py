@@ -15,24 +15,13 @@ class Home(models.Model):
 # Model for the Menu which is created by the Admin
 class Menu(models.Model):
     dish_name = models.CharField(max_length=130)
-    description = models.CharField(max_length=200)
-    price = models.FloatField()
     image = CloudinaryField('image', default='')
     content = models.CharField(max_length=200)
-    likes = models.ManyToManyField(
-        User, related_name='dish_like', blank=True
-        )
     status = models.IntegerField(choices=STATUS, default=0)
 
-    def __str__(self):
-        return self.dish_name
-
-    def number_of_likes(self):
-        return self.likes.count()
 
 
 # Reservation model
-
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -3,17 +3,19 @@
 {% block content %}
 
 
-<div class="card" style="width: 25rem;">
+<div class="row" style="width: 25rem;">
     {% for menu in menu_list %}
-    <img src="{{ menu.image.url }}" class="card-img-top" alt="piece of meat grilled">
+    <div class="col-md-6 mb-4">
+      <div class="card">
+    <img src="{{ menu.image.url }}" class="card-img-top img-fluid" alt="piece of meat grilled">
     <div class="card-body"> 
       <h5 class="card-title">{{ menu.dish_name }}</h5>
-      <p class="card-text">{{ menu.extra }}</p>
-      <p>{{ menu.price }}</p>
-      <p>{{ menu.description }}
       <p>{{ menu.content | safe }}</p>
     </div>
+    </div>
+  </div>
     {% endfor %}
+
   </div>  
 
   

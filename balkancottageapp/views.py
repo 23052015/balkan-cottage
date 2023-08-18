@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
 from django.views.generic.edit import UpdateView, DeleteView
 from .models import Menu, Home, Reservation
@@ -21,7 +21,7 @@ class HomePage(generic.ListView):
 class MenuList(generic.ListView):
     model = Menu
     # decide by which order to sort later
-    queryset = Menu.objects.filter(status=1).order_by('-price')
+    queryset = Menu.objects.filter(status=1)
     template_name = 'menu.html'
     paginate_by = 6
 
@@ -59,9 +59,7 @@ class CreateReservation(LoginRequiredMixin, View):
         of another reservation indicating potential overlapping and avoiding
         conflicts if there is a reservation in a certain time period.
         """
-        datetime_now = timezone.now()
-        reservation_start_time = datetime.combine(reservation_date, reservation_time)
-        reservation_end_time = reservation_start_time + timedelta(hours=3)
+
         if reservation_date.weekday() == 6:
             messages.error(self.request, 'Sorry, We are closed on Sundays')
             return None
@@ -94,16 +92,31 @@ class UpdateReservation(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse_lazy('my_reservations')
 
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        reservation_date = form.cleaned_data['reservation_date']
+        reservation_time = form.cleaned_data['reservation_time']
+        check_overlap = self.check_double_reservation(self.request, reservation_date, reservation_time)
+        if not check_overlap:
+            return self.form_invalid(form)
+        return super().form_valid(form)
+
     def check_double_reservation(self, request, reservation_date, reservation_time):
         existing_reservation = Reservation.objects.filter(
             reservation_date=reservation_date,
             reservation_time=reservation_time,
             user=self.request.user
-        ).exclude(pk=self.object.pk)
+        ).exclude(pk=self.kwargs['pk'])
 
         if existing_reservation.exists():
             messages.error(self.request, 'Ups, there is already a reservation in the selected period')
             return False
         else:
             return True, None
-
+        
+        
+def delete_reservation(request, reservation_id):
+    reservation_to_delete = get_object_or_404(Reservation, id=reservation_id)
+    reservation_to_delete.delete()
+    return redirect('my_reservations')
