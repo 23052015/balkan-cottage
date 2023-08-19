@@ -93,8 +93,7 @@ class UpdateReservation(LoginRequiredMixin, UpdateView):
         return reverse_lazy('my_reservations')
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
+
         reservation_date = form.cleaned_data['reservation_date']
         reservation_time = form.cleaned_data['reservation_time']
         check_overlap = self.check_double_reservation(self.request, reservation_date, reservation_time)
@@ -108,6 +107,9 @@ class UpdateReservation(LoginRequiredMixin, UpdateView):
             reservation_time=reservation_time,
             user=self.request.user
         ).exclude(pk=self.kwargs['pk'])
+        if reservation_date.weekday() == 6:
+            messages.error(self.request, 'Sorry, We are closed on Sundays')
+            return None
 
         if existing_reservation.exists():
             messages.error(self.request, 'Ups, there is already a reservation in the selected period')

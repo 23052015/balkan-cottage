@@ -8,13 +8,13 @@
         {% if user.is_authenticated %}
         {% for reservation in object_list %}
         {% if request.user == reservation.user %}
-        <h2>My Reservations: {{ user.username }}</h2>
+        <h2>My Reservation:</h2>
         <ul>
 
 
             <li>
                 Date: {{ reservation.reservation_date }} | Time: {{ reservation.reservation_time }} | Message: {{ reservation.message }}
-                <a href="{% url 'update_reservation' pk=reservation.pk %}">Update your reservation</a>
+                <a href="{% url 'update_reservation' pk=reservation.pk %}">Update your reservation</a><br>
                 <a href="/delete/{{ reservation.id}}">Cancel your reservation</a>
             </li>
 
@@ -39,15 +39,14 @@
                 {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
-                    <li> {% if message.tags %} {{ message.tags }} {{ message }} {% endif %}</li>
+                    <li> {% if message.tags %} {{ message }} {% endif %}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
             </div>
             <button type="submit">Update your existing reservation</button>
         </form>
-        {% else %}
-        <p>Please login at </p>
+
         {% endif %}
     </div>
 </section>

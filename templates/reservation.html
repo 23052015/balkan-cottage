@@ -6,6 +6,7 @@
 
 <section>
     <div class="container">
+
         {% if user.is_authenticated %}
         <h2>Make a reservation</h2>
 
@@ -20,7 +21,7 @@
                 {% if messages %}
                 <ul class="messages">
                     {% for message in messages %}
-                    <li> {% if message.tags %} {{ message.tags }} {{ message }} {% endif %}</li>
+                    <li> {% if message.tags %} {{ message }} {% endif %}</li>
                     {% endfor %}
                 </ul>
                 {% endif %}
