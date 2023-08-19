@@ -99,7 +99,9 @@ The platform caters to individuals seeking a delightful and enjoyable dining exp
 #### My reservations with update and delete reservation
 ![My reservations](/ReadMeDocumentation/images/my_reservations.png)
 - Here the the user can view the list of his reservation and update/delete them.
-
+  #### Features to implement in future
+  - Set booking duration to length of 3 hours
+  - Create A PDF file in menu which the user can download
 ### Testing
 [Testing](/ReadMe%20Documentation/Testing.md)
 ### Bugs
